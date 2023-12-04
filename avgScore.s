@@ -115,6 +115,13 @@ selSort:
 	sw $s1, 0($sp)
 	sw $s2, 4($sp)
 	sw $s3, 8($sp)
+	# registers:
+	## s1 is orig
+	## s2 is sorted
+	## s3 is len - 1
+	## t0 is i
+	## t1 is indexing into orig
+	## t2 is indexing into sorted
 
 	# copy orig to sorted
 	# load the address of our arrays
@@ -128,18 +135,26 @@ sel_copy_loop:
 	sll $t1, $t0, 2
 	add $t1, $t1, $s1
 	# load the value at that index
-	lw $t2, 0($t1) 
+	lw $t1, 0($t1) 
 	# index into sorted
-	sll $t3, $t0, 2
-	add $t3, $t3, $s2
+	sll $t2, $t0, 2
+	add $t2, $t2, $s2
 	# store the value to that index
-	sw $t2, 0($t3) 
+	sw $t1, 0($t2) 
 	#increment our counter
 	addi $t0, $t0, 1
 	# jump 
 	j sel_copy_loop 
 sel_copy_epilogue:
-
+	# registers:
+	## s1 is orig
+	## s2 is sorted
+	## s3 is len - 1
+	## t0 is i
+	## t1 is maxIndex
+	## t2 is j
+	## t3 is sorted[i]
+	## t4 is sorted[maxIndex]
 	# initialize our counter
 	addi $t0, $zero, 0
 	addi $s3, $a0, -1
@@ -151,7 +166,9 @@ sel_sort_outer_loop:
 	addi $t2, $t0, 1
 sel_sort_inner_loop:
 	bge $t2, $a0, sel_sort_inner_loop_epilogue
-	
+	# index into sorted at j and maxIndex
+	# 
+
 
 sel_sort_inner_loop_epilogue:
 
