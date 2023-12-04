@@ -69,10 +69,23 @@ loop_in:
 	syscall
 	move $a1, $v0
 	sub $a1, $s0, $a1	# numScores - drop
+	move $s3, $a1	# save numScores - drop, we will need it later
 	move $a0, $s2
 	jal calcSum	# Call calcSum to RECURSIVELY compute the sum of scores that are not dropped
 	
 	# Your code here to compute average and print it
+	# save the sum
+	add $s4, $v0, $zero
+	# print the string
+	li $v0, 4
+	la $a0, str5
+	syscall
+	# calc the average
+	div $s4, $s3
+	mflo $a0 # save to $a0 bc we need to print it
+	# print the average
+	li $v0, 1
+	syscall
 	
 	lw $ra, 0($sp)
 	addi $sp, $sp 4
@@ -103,6 +116,9 @@ print_loop:
 	j print_loop
 	# Epilogue
 print_epilogue:
+	li $v0, 4
+	la $a0, endl
+	syscall
 	jr $ra
 	
 	
