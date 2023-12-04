@@ -217,6 +217,27 @@ sel_sort_outer_loop_epilogue:
 # Note: you MUST NOT use iterative approach in this function.
 calcSum:
 	# Your implementation of calcSum here
-	
+	# PROLOGUE
+	addi $sp, $sp, -8
+	sw $ra, 0($sp)
+	sw $s1, 4($sp)
+	# end of prologue
+	addi $v0, $zero, 0
+	ble $a1, $zero, calcsum_epilogue
+	# return (calcSum(arr, len - 1) + arr[len - 1]);
+	addi $a1, $a1, -1
+	# $s1 = arr[len-1]
+	sll $s1, $a1, 2
+	add $s1, $s1, $a0
+	lw $s1, 0($s1)
+	# calcSum(arr, len - 1)
+	jal calcSum
+	# add the two
+	add $v0, $v0, $s1
+calcsum_epilogue:
+	# epilogue
+	lw $ra, 0($sp)
+	lw $s1, 4($sp)
+	addi $sp, $sp, 8
 	jr $ra
 	
