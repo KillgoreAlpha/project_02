@@ -9,6 +9,8 @@ str2: .asciiz "Original scores: "
 str3: .asciiz "Sorted scores (in descending order): "
 str4: .asciiz "Enter the number of (lowest) scores to drop: "
 str5: .asciiz "Average (rounded down) with dropped scores removed: "
+endl: .asciiz "\n"
+space: .asciiz " "
 
 
 .text 
@@ -81,8 +83,26 @@ loop_in:
 # printList takes in an array and its size as arguments. 
 # It prints all the elements in one line with a newline at the end.
 printArray:
-	# Your implementation of printList here	
-
+	# Loop
+	addi $t0, $zero, 0
+print_loop:
+	beq $t0, $a1, print_epilogue
+	sll $t1, $t0, 2
+	add $t1, $t1, $a0
+	# save $a0
+	add $t2, $zero, $a0
+	lw $a0, 0($t1)
+	li $v0, 1
+	syscall
+	li $v0, 4
+	la $a0, space
+	syscall
+	# restore $a0
+	add $a0, $zero, $t2
+	addi $t0, $t0, 1
+	j print_loop
+	# Epilogue
+print_epilogue:
 	jr $ra
 	
 	
