@@ -167,9 +167,22 @@ sel_sort_outer_loop:
 sel_sort_inner_loop:
 	bge $t2, $a0, sel_sort_inner_loop_epilogue
 	# index into sorted at j and maxIndex
-	# 
-
-
+	sll $t3, $t2, 2
+	add $t3, $t3, $s2
+	sll $t4, $t1, 2
+	add $t4, $t4, $s2
+	# load the values at those indices
+	lw $t3, 0($t3)
+	lw $t4, 0($t4)
+	# compare the values
+	ble $t3, $t4, sel_sort_inner_else
+	# set our maxIndex
+	addi $t1, $t2, 0
+sel_sort_inner_else:
+	# increment our counter
+	addi $t2, $t2, 1
+	# jump
+	j sel_sort_inner_loop
 sel_sort_inner_loop_epilogue:
 
 sel_sort_outer_loop_epilogue:
