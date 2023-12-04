@@ -1,73 +1,74 @@
 Test Case 1
 Enter the number of assignments (between 1 and 25): 5
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Original scores: 
-Sorted scores (in descending order): 
+Enter score: 27
+Enter score: 86
+Enter score: 46
+Enter score: 91
+Enter score: 29
+Original scores: 27 86 46 91 29 
+Sorted scores (in descending order): 91 86 46 29 27 
 Enter the number of (lowest) scores to drop: 2
-Average (rounded down) with dropped scores removed: 
+Average (rounded down) with dropped scores removed: 74
 -- program is finished running --
 
 Test Case 2
 Enter the number of assignments (between 1 and 25): 6
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Original scores: 
-Sorted scores (in descending order): 
+Enter score: 12
+Enter score: 34
+Enter score: 56
+Enter score: 78
+Enter score: 90
+Enter score: 10
+Original scores: 12 34 56 78 90 10 
+Sorted scores (in descending order): 90 78 56 34 12 10 
 Enter the number of (lowest) scores to drop: 3
-Average (rounded down) with dropped scores removed: 
+Average (rounded down) with dropped scores removed: 74
 -- program is finished running --
 
 Test Case 3
 Enter the number of assignments (between 1 and 25): 7
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Original scores: 
-Sorted scores (in descending order): 
+Enter score: 90
+Enter score: 87
+Enter score: 65
+Enter score: 43
+Enter score: 21
+Enter score: 98
+Enter score: 76
+Original scores: 90 87 65 43 21 98 76 
+Sorted scores (in descending order): 98 90 87 76 65 43 21 
 Enter the number of (lowest) scores to drop: 4
-Average (rounded down) with dropped scores removed: 
+Average (rounded down) with dropped scores removed: 91
 -- program is finished running --
 
 Test Case 4
 Enter the number of assignments (between 1 and 25): 8
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Original scores: 
-Sorted scores (in descending order): 
-Enter the number of (lowest) scores to drop: 5
-Average (rounded down) with dropped scores removed: 
+Enter score: 12
+Enter score: 23
+Enter score: 34
+Enter score: 45
+Enter score: 56
+Enter score: 67
+Enter score: 78
+Enter score: 89
+Original scores: 12 23 34 45 56 67 78 89 
+Sorted scores (in descending order): 89 78 67 56 45 34 23 12 
+Enter the number of (lowest) scores to drop: 4
+Average (rounded down) with dropped scores removed: 72
 -- program is finished running --
 
 Test Case 5
 Enter the number of assignments (between 1 and 25): 9
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Enter score: 
-Original scores: 
-Sorted scores (in descending order): 
-Enter the number of (lowest) scores to drop: 6
-Average (rounded down) with dropped scores removed: 
+Enter score: 19
+Enter score: 28
+Enter score: 37
+Enter score: 46
+Enter score: 50
+Enter score: 12
+Enter score: 34
+Enter score: 56
+Enter score: 78
+Original scores: 19 28 37 46 50 12 34 56 78 
+Sorted scores (in descending order): 78 56 50 46 37 34 28 19 12 
+Enter the number of (lowest) scores to drop: 2
+Average (rounded down) with dropped scores removed: 47
 -- program is finished running --
