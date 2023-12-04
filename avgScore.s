@@ -86,7 +86,7 @@ printArray:
 	# Loop
 	addi $t0, $zero, 0
 print_loop:
-	beq $t0, $a1, print_epilogue
+	bge $t0, $a1, print_epilogue
 	sll $t1, $t0, 2
 	add $t1, $t1, $a0
 	# save $a0
@@ -110,7 +110,58 @@ print_epilogue:
 # It performs SELECTION sort in descending order and populates the sorted array
 selSort:
 	# Your implementation of selSort here
+	# PROLOGUE
+	addi $sp, $sp, -12
+	sw $s1, 0($sp)
+	sw $s2, 4($sp)
+	sw $s3, 8($sp)
+
+	# copy orig to sorted
+	# load the address of our arrays
+	la $s1, orig
+	la $s2, sorted
+	# initialize our counter
+	addi $t0, $zero, 0
+sel_copy_loop:
+	bge $t0, $a0, sel_copy_epilogue
+	# index into orig
+	sll $t1, $t0, 2
+	add $t1, $t1, $s1
+	# load the value at that index
+	lw $t2, 0($t1) 
+	# index into sorted
+	sll $t3, $t0, 2
+	add $t3, $t3, $s2
+	# store the value to that index
+	sw $t2, 0($t3) 
+	#increment our counter
+	addi $t0, $t0, 1
+	# jump 
+	j sel_copy_loop 
+sel_copy_epilogue:
+
+	# initialize our counter
+	addi $t0, $zero, 0
+	addi $s3, $a0, -1
+sel_sort_outer_loop:
+    bge $t0, $s3, sel_sort_outer_loop_epilogue
+	# set our maxIndex
+	addi $t1, $t0, 0
+	# initialize our counter
+	addi $t2, $t0, 1
+sel_sort_inner_loop:
+	bge $t2, $a0, sel_sort_inner_loop_epilogue
 	
+
+sel_sort_inner_loop_epilogue:
+
+sel_sort_outer_loop_epilogue:
+
+	# EPILOGUE
+	lw $s1, 0($sp)
+	lw $s2, 4($sp)
+	lw $s3, 8($sp)
+	addi $sp, $sp, 8
 	jr $ra
 	
 	
