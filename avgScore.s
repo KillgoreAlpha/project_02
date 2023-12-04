@@ -153,8 +153,10 @@ sel_copy_epilogue:
 	## t0 is i
 	## t1 is maxIndex
 	## t2 is j
-	## t3 is sorted[i]
-	## t4 is sorted[maxIndex]
+	## t3 is sorted[j], reused to be the offset into sorted for i
+	## t4 is sorted[maxIndex], reused to be the offset into sorted for maxIndex
+	## t5 is used for swapping
+	## t6 is used for swapping
 	# initialize our counter
 	addi $t0, $zero, 0
 	addi $s3, $a0, -1
@@ -183,10 +185,25 @@ sel_sort_inner_else:
 	addi $t2, $t2, 1
 	# jump
 	j sel_sort_inner_loop
+	# we can reuse t3 and t4 after this point
 sel_sort_inner_loop_epilogue:
-
+	# swap sorted[i] and sorted[maxIndex]
+	# index into sorted at i and maxIndex
+	sll $t3, $t0, 2
+	add $t3, $t3, $s2
+	sll $t4, $t1, 2
+	add $t4, $t4, $s2
+	# load the values at those indices
+	lw $t5, 0($t3)
+	lw $t6, 0($t4)
+	# store the values to those indices, swapping them
+	sw $t6, 0($t3)
+	sw $t5, 0($t4)
+	# increment our counter
+	addi $t0, $t0, 1
+	# jump
+	j sel_sort_outer_loop
 sel_sort_outer_loop_epilogue:
-
 	# EPILOGUE
 	lw $s1, 0($sp)
 	lw $s2, 4($sp)
